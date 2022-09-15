@@ -20,7 +20,7 @@ BookList.propTypes = {
       id: PropTypes.number,
       title: PropTypes.string,
       author: PropTypes.string,
-    })
+    }),
   ).isRequired,
 };
 

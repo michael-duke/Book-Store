@@ -17,17 +17,15 @@ const Navbar = () => {
 
   const activeClassName = 'activeLink';
   return (
-    <nav style={{'marginBottom':'3rem'}}  >
-      <h1 style={{'display':'inline-block', 'marginRight':'2rem'}} >BookCMS</h1>
-      <ul style={{'display':'inline-block', 'marginRight':'2rem'}} >
+    <nav style={{ marginBottom: '3rem' }}>
+      <h1 style={{ display: 'inline-block', marginRight: '2rem' }}>BookCMS</h1>
+      <ul style={{ display: 'inline-block', marginRight: '2rem' }}>
         {links.map(({ id, path, text }) => (
-          <li style={{'display':'inline-block', 'marginRight':'2rem'}} key={id}>
+          <li style={{ display: 'inline-block', marginRight: '2rem' }} key={id}>
             <NavLink
               end
               to={path}
-              className={({ isActive }) =>
-                isActive ? activeClassName : undefined
-              }
+              className={({ isActive }) => (isActive ? activeClassName : undefined)}
             >
               {text}
             </NavLink>

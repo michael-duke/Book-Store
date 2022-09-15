@@ -6,7 +6,10 @@ const Book = (props) => {
   return (
     <li>
       <h2>
-        {title} by {author}
+        {title}
+        {' '}
+        by
+        {author}
       </h2>
       <button type="button">Remove</button>
     </li>
