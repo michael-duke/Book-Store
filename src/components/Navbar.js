@@ -11,7 +11,7 @@ const Navbar = () => {
     {
       id: 2,
       path: '/categories',
-      text: 'Catgories',
+      text: 'Categories',
     },
   ];
 
