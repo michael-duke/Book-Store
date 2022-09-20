@@ -14,22 +14,38 @@ const BookForm = () => {
     else if (name === 'author') setAuthor(value);
   };
 
+  const handleSumbit = (e) => {
+    e.preventDefault();
+    const newBook = {
+      id: uuidv4(),
+      title,
+      author,
+    };
+    dispatch(addBook(newBook));
+
+    // Sets back the input fields
+    setAuthor('');
+    setTitle('');
+  };
+
   return (
     <>
       <h3 style={{ marginTop: '2rem' }}>ADD NEW BOOK</h3>
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          dispatch(addBook({
-            id: uuidv4(),
-            title,
-            author,
-          }));
-        }}
-        style={{ display: 'flex', gap: '2rem' }}
-      >
-        <input type="text" placeholder="Title" name="title" onChange={handleChange} />
-        <input type="text" placeholder="Author" name="author" onChange={handleChange} />
+      <form onSubmit={handleSumbit} style={{ display: 'flex', gap: '2rem' }}>
+        <input
+          type="text"
+          value={title}
+          placeholder="Title"
+          name="title"
+          onChange={handleChange}
+        />
+        <input
+          type="text"
+          value={author}
+          placeholder="Author"
+          name="author"
+          onChange={handleChange}
+        />
         <button type="submit">Add Book</button>
       </form>
     </>
