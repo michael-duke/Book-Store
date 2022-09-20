@@ -29,10 +29,12 @@ const api = {
     const response = await fetch(baseURL);
     const data = await response.json();
 
-    const books = Object.entries(data).map(([id, book]) => {
-      const { title, author } = book[0];
-      return { id, title, author };
-    });
+    const books = Object.entries(data)
+      .map(([id, book]) => {
+        const { title, author } = book[0];
+        return { id, title, author };
+      })
+      .sort((a, b) => a.title.localeCompare(b.title));
 
     return books;
   },
