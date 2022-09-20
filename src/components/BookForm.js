@@ -22,6 +22,10 @@ const BookForm = () => {
       author,
     };
     dispatch(addBook(newBook));
+
+    // Sets back the input fields
+    setAuthor('');
+    setTitle('');
   };
 
   return (
@@ -30,12 +34,14 @@ const BookForm = () => {
       <form onSubmit={handleSumbit} style={{ display: 'flex', gap: '2rem' }}>
         <input
           type="text"
+          value={title}
           placeholder="Title"
           name="title"
           onChange={handleChange}
         />
         <input
           type="text"
+          value={author}
           placeholder="Author"
           name="author"
           onChange={handleChange}
