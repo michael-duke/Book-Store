@@ -7,7 +7,7 @@ const Categories = () => {
   const dispatch = useDispatch();
 
   const handleStatus = () => dispatch(checkStatus());
-  
+
   return (
     <>
       <p>{status}</p>
