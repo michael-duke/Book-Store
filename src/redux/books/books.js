@@ -1,45 +1,37 @@
+import api from '../../api/api';
 // Actions
 const ADD_BOOK = 'ADD_BOOK';
 const REMOVE_BOOK = 'REMOVE_BOOK';
-const initialState = [
-  {
-    id: '',
-    title: 'The Hunger Games',
-    author: 'Suzan Collins',
-  },
-  {
-    id: '2',
-    title: 'Harry Potter',
-    author: 'J.K.Rowling',
-  },
-  {
-    id: '3',
-    title: 'The Lord of the Rings',
-    author: 'J.R.R. Tolkien',
-  },
-];
+const GET_BOOKS = 'GET_BOOKS';
 
 // Reducer
-const booksReducer = (state = initialState, action) => {
+const booksReducer = (state = [], action) => {
   switch (action.type) {
     case ADD_BOOK:
       return [...state, action.book];
     case REMOVE_BOOK:
       return [...state.filter(({ id }) => id !== action.bookId)];
+    case GET_BOOKS:
+      return action.books;
     default:
       return state;
   }
 };
 
 // Action Creators
-export const addBook = (book) => ({
-  type: ADD_BOOK,
-  book,
-});
+export const addBook = (book) => async (dispatch) => {
+  api.addNewBook(book);
+  dispatch({ type: ADD_BOOK, book });
+};
 
-export const removeBook = (bookId) => ({
-  type: REMOVE_BOOK,
-  bookId,
-});
+export const removeBook = (bookId) => async (dispatch) => {
+  api.deleteBook(bookId);
+  dispatch({ type: REMOVE_BOOK, bookId });
+};
+
+export const getBooks = () => async (dispatch) => {
+  const books = await api.fetchBooks();
+  dispatch({ type: GET_BOOKS, books });
+};
 
 export default booksReducer;
