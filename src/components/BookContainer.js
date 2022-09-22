@@ -7,6 +7,26 @@ import BookForm from './BookForm';
 const BookContainer = () => {
   const books = useSelector((state) => state.books);
 
+  const categories = [
+    'Action and Adventure',
+    'Classics',
+    'Comic Book or Graphic Novel',
+    'Detective and Mystery',
+    'Fantasy',
+    'Historical Fiction',
+    'Horror',
+    'Literary Fiction',
+    'Science Fiction (Sci-Fi)',
+    'Short Stories',
+    'Suspense and Thrillers',
+    "Women's Fiction",
+    'History',
+    'Memoir',
+    'Poetry',
+    'Self-Help',
+    'True Crime',
+  ];
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -14,10 +34,10 @@ const BookContainer = () => {
   }, []);
 
   return (
-    <>
+    <div className="book-container p-[4%]">
       <BooksList books={books} />
-      <BookForm />
-    </>
+      <BookForm categories={categories} />
+    </div>
   );
 };
 

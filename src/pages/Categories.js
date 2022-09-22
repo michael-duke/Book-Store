@@ -1,5 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Button } from '@material-tailwind/react';
 import { checkStatus } from '../redux/categories/categories';
 
 const Categories = () => {
@@ -9,15 +10,16 @@ const Categories = () => {
   const handleStatus = () => dispatch(checkStatus());
 
   return (
-    <>
-      <p>{status}</p>
-      <button
-        type="button"
+    <div className="category-status flex flex-col items-center py-20">
+      <p className="text-xl capitalize text-opaque-grey/70 tracking-widest">{status}</p>
+      <Button
+        className="font-roboto-slab bg-book-blue rounded tracking-wider"
+        variant="gradient"
         onClick={handleStatus}
       >
-        Check status
-      </button>
-    </>
+        Check Status
+      </Button>
+    </div>
   );
 };
 
