@@ -1,0 +1,22 @@
+.CircularProgress {
+  border-radius: 50%;
+  width: 4.25rem;
+  height: 4.25rem;
+  border: 5px solid #307bbe;
+  border-left-color: #e8e8e8;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.DividerProgress {
+  height: 4.375rem;
+  background-color: #e8e8e8;
+  margin: 1.125rem 3.688rem 0 4.938rem;
+  border: solid 1px #e8e8e8;
+}
+
+@media (max-width: 768px) {
+  .DividerProgress {
+    display: none;
+  }
+}

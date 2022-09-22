@@ -1,9 +1,10 @@
-const STATUS_CHEKCKED = 'STATUS_CHEKCKED';
+const STATUS_CHEKCKED = 'book-store/categories/STATUS_CHEKCKED';
 
 const categoriesReducer = (state = '', action) => {
   switch (action.type) {
     case STATUS_CHEKCKED:
-      return 'Under construction';
+      if (state === 'under construction') return '';
+      return 'under construction';
     default:
       return state;
   }

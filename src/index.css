@@ -1,3 +1,5 @@
+@import url('./tailwind.css');
+
 html {
   scroll-behavior: smooth;
   box-sizing: border-box;
@@ -13,5 +15,30 @@ html {
 }
 
 body {
-  background-color: rgb(226 232 240);
+  background-color: #f5f6fa;
+  padding: 3rem 4% 11.75rem;
+}
+
+/* Scrollbar section */
+::-webkit-scrollbar {
+  width: 0.5625rem;
+}
+
+::-webkit-scrollbar-track {
+  background: #fff;
+  border-radius: 0.3125rem;
+}
+
+::-webkit-scrollbar-thumb {
+  background:
+    linear-gradient(
+      45deg,
+      rgba(18, 18, 18, 0.25),
+      rgba(2, 144, 255, 0.7) 100%
+    );
+  border-radius: 0.3125rem;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(120 113 108);
 }
