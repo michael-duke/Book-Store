@@ -1,17 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button } from '@material-tailwind/react';
 import { checkStatus } from '../redux/categories/categories';
 
 const Categories = () => {
   const status = useSelector((state) => state.categories);
-  const dispatch = useDispatch();
+  const [categoryStatus, setCategoryStatus] = useState(status);
 
-  const handleStatus = () => dispatch(checkStatus());
+  const dispatch = useDispatch();
+  const currentStatus = categoryStatus.length > 0 ? '' : 'under construction';
+
+  const handleStatus = () => {
+    setCategoryStatus(currentStatus);
+    dispatch(checkStatus(currentStatus));
+  };
 
   return (
     <div className="category-status flex flex-col items-center py-20">
-      <p className="text-xl capitalize text-opaque-grey/70 tracking-widest">{status}</p>
+      {categoryStatus.length > 0
+        ? (
+          <p className="text-xl capitalize text-opaque-grey/70 tracking-widest">
+            {categoryStatus}
+            <div className="spinner-grow inline-block w-4 h-4 bg-current rounded-full opacity-0 text-blue-gray-600" role="status">
+              <span className="visually-hidden">Status Loading...</span>
+            </div>
+          </p>
+        )
+        : categoryStatus}
       <Button
         className="font-roboto-slab bg-book-blue rounded tracking-wider"
         variant="gradient"
