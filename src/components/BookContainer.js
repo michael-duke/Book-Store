@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getBooks } from '../redux/books/books';
+import { getBooks, allBooks, allStatus } from '../redux/books/books';
 import BooksList from './BookList';
 import BookForm from './BookForm';
+import Loading from './Loading';
 
 const BookContainer = () => {
-  const books = useSelector((state) => state.books);
-
+  const books = useSelector(allBooks);
+  const status = useSelector(allStatus);
   const categories = [
     'Action and Adventure',
     'Classics',
@@ -31,13 +32,19 @@ const BookContainer = () => {
 
   useEffect(() => {
     dispatch(getBooks());
-  }, []);
+  }, [dispatch]);
 
   return (
-    <div className="book-container p-[4%]">
-      <BooksList books={books} />
-      <BookForm categories={categories} />
-    </div>
+    <>
+      {status === 'loading'
+        ? <Loading />
+        : (
+          <div className="book-container p-[4%]">
+            <BooksList books={books} />
+            <BookForm categories={categories} />
+          </div>
+        )}
+    </>
   );
 };
 
