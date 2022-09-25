@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 import {
   Button, Input, Option, Select,
 } from '@material-tailwind/react';
-import { addBook } from '../redux/books/books';
+import { addNewBook } from '../redux/books/booksSlice';
 
 const BookForm = ({ categories }) => {
   const [title, setTitle] = useState('');
@@ -34,7 +34,7 @@ const BookForm = ({ categories }) => {
       category,
     };
 
-    dispatch(addBook(newBook));
+    dispatch(addNewBook(newBook));
 
     // Sets back the input fields
     setAuthor('');

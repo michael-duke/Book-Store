@@ -19,12 +19,14 @@ const Categories = () => {
     <div className="category-status flex flex-col items-center py-20">
       {categoryStatus.length > 0
         ? (
-          <p className="text-xl capitalize text-opaque-grey/70 tracking-widest">
-            {categoryStatus}
+          <div className="flex items-baseline">
+            <p className="text-xl capitalize text-opaque-grey/70 tracking-widest">
+              {categoryStatus}
+            </p>
             <div className="spinner-grow inline-block w-4 h-4 bg-current rounded-full opacity-0 text-blue-gray-600" role="status">
               <span className="visually-hidden">Status Loading...</span>
             </div>
-          </p>
+          </div>
         )
         : categoryStatus}
       <Button

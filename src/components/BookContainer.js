@@ -1,13 +1,20 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getBooks, allBooks, allStatus } from '../redux/books/books';
+import {
+  getBooks,
+  allBooks,
+  allStatus,
+  allMsgs,
+} from '../redux/books/booksSlice';
 import BooksList from './BookList';
 import BookForm from './BookForm';
 import Loading from './Loading';
+import Toast from './Toast';
 
 const BookContainer = () => {
   const books = useSelector(allBooks);
   const status = useSelector(allStatus);
+  const message = useSelector(allMsgs);
   const categories = [
     'Action and Adventure',
     'Classics',
@@ -36,14 +43,22 @@ const BookContainer = () => {
 
   return (
     <>
-      {status === 'loading'
-        ? <Loading />
-        : (
-          <div className="book-container p-[4%]">
-            <BooksList books={books} />
-            <BookForm categories={categories} />
-          </div>
-        )}
+      {status === 'loading' ? (
+        <Loading />
+      ) : (
+        <div className="book-container p-[4%]">
+          {message ? (
+            <Toast
+              title={message.title}
+              author={message.author}
+              action={message.action}
+            />
+          ) : null}
+
+          <BooksList books={books} />
+          <BookForm categories={categories} />
+        </div>
+      )}
     </>
   );
 };

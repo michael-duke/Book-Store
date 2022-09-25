@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Button } from '@material-tailwind/react';
-import { removeBook } from '../redux/books/books';
+import { deleteBook } from '../redux/books/booksSlice';
 import styles from './Book.module.css';
 
 const Book = (props) => {
@@ -11,7 +11,7 @@ const Book = (props) => {
   } = props;
   const dispatch = useDispatch();
 
-  const handleRemove = () => dispatch(removeBook(id));
+  const handleRemove = () => dispatch(deleteBook(id));
 
   return (
     <li className="flex flex-wrap sm:flex-col sm:gap-10 items-center justify-between bg-white mb-8 border border-bd-grey rounded p-8 sl:p-[5%]">

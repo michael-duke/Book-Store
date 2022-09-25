@@ -9,11 +9,14 @@ const GET_BOOKS = 'GET_BOOKS';
 const initialState = {
   books: [],
   status: 'idle', // 'idle' | 'loading' | 'succeeded' | 'failed'
+  error: null,
+  msg: null,
 };
 
 export const addNewBook = createAsyncThunk(ADD_BOOK, async (book) => {
   try {
-    return await api.addNewBook(book);
+    await api.addNewBook(book);
+    return { book };
   } catch (error) {
     return error.message;
   }
@@ -21,7 +24,8 @@ export const addNewBook = createAsyncThunk(ADD_BOOK, async (book) => {
 
 export const deleteBook = createAsyncThunk(REMOVE_BOOK, async (id) => {
   try {
-    return await api.deleteBook(id);
+    await api.deleteBook(id);
+    return { id };
   } catch (error) {
     return error.message;
   }
@@ -47,6 +51,14 @@ const booksSlice = createSlice({
       ...state,
       books: [...state.books.filter(({ id }) => id !== action.payload)],
     }),
+    setAdded: (state) => ({
+      ...state,
+      msg: null,
+    }),
+    setRemoved: (state) => ({
+      ...state,
+      msg: null,
+    }),
   },
   extraReducers: (builder) => {
     builder
@@ -61,32 +73,46 @@ const booksSlice = createSlice({
       }))
       .addCase(getBooks.rejected, (state, action) => ({
         ...state,
-        status: action.error.message,
+        status: 'failed',
+        error: action.error.message,
+      }))
+      .addCase(addNewBook.pending, (state) => ({
+        ...state,
+        status: 'loading',
       }))
       .addCase(addNewBook.fulfilled, (state, action) => ({
         ...state,
-        books: [...state.books, action.payload],
+        books: [...state.books, action.payload.book],
         status: 'succeeded',
+        msg: { ...action.payload.book, action: 'ADD' },
       }))
-      .addCase(addNewBook.rejected, (state) => ({
+      .addCase(addNewBook.rejected, (state, action) => ({
         ...state,
         status: 'failed',
+        error: action.error.message,
+      }))
+      .addCase(deleteBook.pending, (state) => ({
+        ...state,
+        status: 'loading',
       }))
       .addCase(deleteBook.fulfilled, (state, action) => ({
         ...state,
-        books: [...state.books.filter(({ id }) => id !== action.payload)],
+        books: [...state.books.filter(({ id }) => id !== action.payload.id)],
         status: 'succeeded',
+        msg: { ...state.books.find(({ id }) => id === action.payload.id), action: 'DEL' },
       }))
-      .addCase(deleteBook.rejected, (state) => ({
+      .addCase(deleteBook.rejected, (state, action) => ({
         ...state,
         status: 'failed',
+        error: action.error.message,
       }));
   },
 });
 
-export const { addBook, removeBook } = booksSlice.actions;
+export const { setAdded, setRemoved } = booksSlice.actions;
 
 export const allBooks = (state) => state.books.books;
 export const allStatus = (state) => state.books.status;
+export const allMsgs = (state) => state.books.msg;
 
 export default booksSlice.reducer;
