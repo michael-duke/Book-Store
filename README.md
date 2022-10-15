@@ -12,6 +12,13 @@
 - Linters:
   - Stylelint, ESLint
 
+## Website Mockup 📱 💻 🖥️
+![screenshot](https://user-images.githubusercontent.com/84629565/196006595-0e1d9769-bb00-46a6-bfa4-d4b4fe5f22da.jpg)
+![screenshot](https://user-images.githubusercontent.com/84629565/196006598-58c7d24f-083b-4ee4-9620-41480b83fee0.png)
+![screenshot](https://user-images.githubusercontent.com/84629565/196006596-467709c6-8d03-4f74-8efc-3f3de7d9521c.png)
+![screenshot](https://user-images.githubusercontent.com/84629565/196006936-fa38604f-61bd-45f3-8a53-0ae99008abd6.png)
+![screenshot](https://user-images.githubusercontent.com/84629565/196006938-de7a30d3-ce40-44e6-b5af-cfe7dbe81c5f.png)
+![screenshot](https://user-images.githubusercontent.com/84629565/196006935-54710009-5899-4936-ad76-d8c5e487ea24.png)
 ## Live Demo 
 
 in progess :smile: 
