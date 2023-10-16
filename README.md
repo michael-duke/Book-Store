@@ -21,7 +21,7 @@
 ![screenshot](https://user-images.githubusercontent.com/84629565/196006935-54710009-5899-4936-ad76-d8c5e487ea24.png)
 ## Live Demo 
 
-in progess :smile: 
+[Live](https://bookstore-2112.netlify.app/) :smile: 
 
 
 ## Getting Started
